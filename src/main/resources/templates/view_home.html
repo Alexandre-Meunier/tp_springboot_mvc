@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+</head>
+<body>
+    <h1>Liste des employées</h1>
+    <ul>
+        <li th:each="employee: ${employees}">
+            <p th:text="${employee.name}"></p>
+        </li>
+    </ul>
+</body>
+</html>
