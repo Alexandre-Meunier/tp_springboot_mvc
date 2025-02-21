@@ -3,13 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Employees</title>
+    <style>
+        * {margin: 0; padding: 0}
+        h1   {margin-block: 50px; margin-left: 25px;}
+        ul {gap: 0; width: 300px; margin-left: 75px}
+        li {list-style: none;}
+        form {width: 300px; display: flex; flex-direction: column; margin-top: 50px; margin-left: 75px; background-color: white, border-radius: 10px}
+    </style>
 </head>
 <body>
     <h1>Liste des employées</h1>
     <ul>
-        <li th:each="employee: ${employees}">
-            <p th:text="${employee.name}"></p>
+        <li class="employee" th:each="employee: ${employees}">
+            <p th:text="${employee.name}" th:attr="style='background:' + ${employee.fonction.getCodeCouleur()}"></p>
         </li>
     </ul>
+
+    <form th:action="@{/addemployee}" method="post" th:object="${employee}">
+        <label>
+            Nom
+            <input type="text" th:field="*{name}">
+        </label>
+        <br>
+        <label>
+            Adresse
+            <input type="text" th:field="*{address}">
+        </label>
+        <br>
+        <label>
+            Courriel
+            <input type="text" th:field="*{email}">
+        </label>
+        <br>
+        <label>
+            Téléphone
+            <input type="text" th:field="*{phone}">
+        </label>
+        <br>
+        <select name="color">
+            <option th:each="fonction : ${T(fr.devavance.tp_springboot_mvc_jpa.beans.Fonction).values()}"
+                    th:value="${fonction}" th:text="${fonction}"></option>
+        </select>
+        <br>
+        <button type="submit">Ajouter</button>
+    </form>
+
 </body>
 </html>

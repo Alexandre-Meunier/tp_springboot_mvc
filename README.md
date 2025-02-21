@@ -40,3 +40,55 @@ Quel rôle joue la page template1.html ?
 Question : A quoi correpond la valeur retournée ?
 
     La chaine retourné retourne la vue à afficher, cherché dans les templates.
+
+
+Question : Quelle est cette modification? Pourquoi ?
+    
+    IEmployeeRepository permet de créer un répertoire permettant la gestion des employees avec la BDD
+
+Question : Que constatez-vous ?
+    
+    Dans application.properties, 'spring.jpa.hibernate.ddl-auto' peut être à :
+        - none, donc pas de sauvegarde dans la BDD; 
+        - create-drop, donc cela créé la BDD au démarrage de l'application et la supprime à l'arrêt;
+        - update, ce qui permet de persister les données même après l'arrêt de l'application 
+
+# Spring Boot, MVC,JPA (partie 2)
+## Exercice 1 : Remplissage automatique de la base de données (à des fins de tests)
+
+Question : A quoi correspondent ces propriétés ?
+
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+    Ces lignes permettent à hibernate d'afficher les requêtes SQL et de les formater en SQL pour rendre lisible
+
+Question : Interpréter les affichages sur la console
+
+    Dans la console, on peut voir les actions d'hibernate sur la BDD. Ainsi, il supprime la table employee si elle existe et la recréé
+
+
+## Exercice 2 : Remplissage du référentiel des employées
+
+
+A quoi correspond l'annotation @Component ?
+
+    Cette annotation permet de détecter un bean automatiquement pour injecter les dépendances
+
+
+A quoi servent les instructions :
+
+```java
+@Autowired
+private IEmployeeRepository employeeRepository;
+```
+
+    Ces instructions servent à injecter l'interface pour les constructeurs, les accesseurs, etc.
+
+
+## Exercice 3 : Refactorisation du code (partie 1)
+
+Question : Quelle est l'URL qui permet d'accéder à la page home de l'application ?
+
+    L'url est http://localhost:8080/employee/home ou http://localhost:8080/employee (Dans mon cas)
+
