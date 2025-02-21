@@ -39,6 +39,16 @@ public class EmployeeControleur implements IEmployeeController{
     @PostMapping("/addemployee")
     public String addEmployee(Employee employee){
         employeeRepository.save(employee);
-        return "redirect:/";
+        return "redirect:/employee/home";
+    }
+
+    @Override
+    @RequestMapping(value = "/{id}")
+    public String displayEmployee(@PathVariable(name="id") Long id, Model model) {
+
+        model.addAttribute("employee", employeeRepository.findById(id));
+
+        return "view_employee";
+
     }
 }

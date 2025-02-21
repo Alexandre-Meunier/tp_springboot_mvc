@@ -92,3 +92,28 @@ Question : Quelle est l'URL qui permet d'accéder à la page home de l'applicati
 
     L'url est http://localhost:8080/employee/home ou http://localhost:8080/employee (Dans mon cas)
 
+
+## Exercice 4 : Affichage des fiches détaillées des employées
+
+
+A quoi sert l'annotation @RequestMapping(value = "/{id}") (indice : documentez-vous sur JAX-RS) ?
+
+    Cette annotation permet de regarder dans le lien si il y a un id.
+
+
+A quoi sert l'annotation @PathVariable(name="id") ?
+
+    Cette annotation permet de préciser à la méthod que le paramètre id provient de la valeur id défini par le requestMapping
+
+
+Donnez un exemple de requête HTTP qui activerait cette méthode, en expliquant les valeurs d'initialisation des paramètres.
+
+    Avec ma requêt "http://localhost:8080/employee/2", la méthode aura comme id 2 et un model
+
+Explication de :
+    
+    <a th:href="@{/employee/{id}(id=${employee.id})}" th:text="${employee.id}"></a>
+
+    Dans ce code, le href renvoie le lien d'un employee en fonction de son id, donc l'attribut id va avoir comme valeur employee.id
+
+
