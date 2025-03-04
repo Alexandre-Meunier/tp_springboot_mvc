@@ -1,5 +1,8 @@
-package fr.devavance.tp_springboot_mvc_jpa.beans;
+package fr.devavance.tp_springboot_mvc_jpa.enumeration;
 
+import lombok.Getter;
+
+@Getter
 public enum Fonction {
     CHEF_PROJET("blue"),
     DEV_OPS("green"),
@@ -11,10 +14,6 @@ public enum Fonction {
 
     private Fonction(String codeCouleur) {
         this.codeCouleur = codeCouleur;
-    }
-
-    public String getCodeCouleur() {
-        return this.codeCouleur;
     }
 
 }

@@ -1,0 +1,5 @@
+* {margin: 0; padding: 0}
+h1   {margin-block: 50px; margin-left: 25px;}
+ul {gap: 0; width: 300px; margin-left: 75px}
+li {list-style: none;}
+form {width: 300px; display: flex; flex-direction: column; margin-top: 50px; margin-left: 75px; background-color: white; border-radius: 10px}

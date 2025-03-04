@@ -1,8 +1,8 @@
-package fr.devavance.tp_springboot_mvc_jpa.controllers;
+package fr.devavance.tp_springboot_mvc_jpa.controllers.implementation;
 
-import fr.devavance.tp_springboot_mvc_jpa.beans.Employee;
-import fr.devavance.tp_springboot_mvc_jpa.dao.IEmployeeController;
-import fr.devavance.tp_springboot_mvc_jpa.dao.IEmployeeRepository;
+import fr.devavance.tp_springboot_mvc_jpa.controllers.IEmployeeController;
+import fr.devavance.tp_springboot_mvc_jpa.entity.Employee;
+import fr.devavance.tp_springboot_mvc_jpa.repository.IEmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/employee")
-public class EmployeeControleur implements IEmployeeController{
+public class EmployeeControleur implements IEmployeeController {
 
     @Autowired
     private IEmployeeRepository employeeRepository;
@@ -22,16 +22,14 @@ public class EmployeeControleur implements IEmployeeController{
         this.employeeRepository = employeeRepository;
     }
 
-    @RequestMapping
-    public String findAllEmployee(Model model){
-        model.addAttribute("employee",new Employee());
-        model.addAttribute("employees", employeeRepository.findAll());
-        return "view_home";
+    @GetMapping("/")
+    public String findAllEmployee(){
+        return "redirect:/employee/home";
     }
 
     @GetMapping("/home")
     public String displayHome(Model model) {
-        model.addAttribute("employee",new Employee());
+        model.addAttribute("employee", new Employee());
         model.addAttribute("employees", employeeRepository.findAll());
         return "view_home";
     }
@@ -39,7 +37,8 @@ public class EmployeeControleur implements IEmployeeController{
     @PostMapping("/addemployee")
     public String addEmployee(Employee employee){
         employeeRepository.save(employee);
-        return "redirect:/employee/home";
+        Long idEmployee = employee.getId();
+    return "redirect:/employee/"+idEmployee;
     }
 
     @Override
